@@ -1,0 +1,23 @@
+[project]
+name = "supabase-ai-platform-proof-of-work"
+version = "0.1.0"
+description = "Least-Privilege Python MCP Server & CI-Gated LLM Evaluation Suite"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "pydantic>=2.0",
+    "httpx>=0.27.0",
+    "mcp-work-triage",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["mcp-work-triage/tests", "evals/tests"]
+pythonpath = [".", "mcp-work-triage/src"]
