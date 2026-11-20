@@ -198,7 +198,7 @@ def verify_and_prepare_commit(
             f"Draft '{draft_id}' has invalid status '{draft.status}' for commitment."
         )
 
-    if not draft.approval_token or draft.approval_token != human_approval_token:
+    if not draft.approval_token or not secrets.compare_digest(draft.approval_token, human_approval_token):
         raise SecurityGovernanceError(
             "Invalid human approval token. Commitment rejected."
         )
